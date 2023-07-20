@@ -1,19 +1,11 @@
-# policy.hcl
+version = "v1"
 
-package main
-
-default allow = false
-
-# Example rule to allow creating instances with specific tags
-allow {
-    input.method == "POST"
-    input.path == ["compute", "instances"]
-    input.request.body.tags.environment == "production"
+policy "limit_modules" {
+    enabled = true
+    enforcement_level = "advisory"
 }
 
-# Example rule to allow creating a specific type of database
-allow {
-    input.method == "POST"
-    input.path == ["database", "instances"]
-    input.request.body.engine == "mysql"
+policy "workspace_name_convention" {
+    enabled = true
+    enforcement_level = "advisory"
 }
